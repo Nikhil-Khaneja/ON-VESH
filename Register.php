@@ -1,6 +1,6 @@
 <?php
 session_start();
-$con=mysqli_connect("localhost","id4639390_psp","onvesh","id4639390_onveshdb");
+$con=mysqli_connect("localhost","nikhil","nikhil","onvesh");
 $id=$_POST["Event"];
 $name=$_POST["name"];
 $enrollment=$_POST["enrollment"];
@@ -9,8 +9,8 @@ $_SESSION['branch']=$_POST["Branch"];
 $_SESSION['year']=$_POST["Year"];
 
 
-$query_name=mysqli_query($con, "SELECT * FROM register WHERE userFullName like '$name' AND userEnroll='$enrollment';");
-
+$query_name=mysqli_query($con, "SELECT * FROM register WHERE register.userFullName like '$name' AND register.userEnroll=$enrollment;");
+// echo "total rows : ".mysqli_num_rows($query_name);
 if (mysqli_num_rows($query_name) > 0){
 	$row1 = mysqli_fetch_assoc($query_name);
 	$_SESSION['uname'] = $row1['userFullName'];
